@@ -25,6 +25,14 @@ class ProductModel {
 
     return result;
   }
+
+  public async getAll(): Promise<Product[]> {
+    const query = 'SELECT * FROM Trybesmith.Products ORDER BY id ASC';
+
+    const [result] = await this.connection.query(query);
+
+    return result as Product[];
+  }
 }
 
 export default ProductModel;
