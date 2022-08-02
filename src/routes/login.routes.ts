@@ -12,8 +12,8 @@ const userMiddleware = new UserMiddleware();
 
 loginRouter.post(
   '/',
-  userMiddleware.userValidation,
-  userMiddleware.teste,
+  userMiddleware.userDataValidation,
+  userMiddleware.userApprovalValidation,
   userController.login,
 );
 

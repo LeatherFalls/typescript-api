@@ -1,19 +1,11 @@
 import { Request, Response, NextFunction } from 'express';
 
-import connection from '../models/connection';
-
-import UserModel from '../models/user.model';
-
 import UserService from '../services/user.service';
 
 class UserMiddleware {
-  public model: UserModel;
+  constructor(private userService = new UserService()) {}
 
-  constructor(private userService = new UserService()) {
-    this.model = new UserModel(connection);
-  }
-
-  public userValidation = (req: Request, res: Response, next: NextFunction) => {
+  public userDataValidation = (req: Request, res: Response, next: NextFunction) => {
     try {
       const { username, password } = req.body;
 
@@ -31,7 +23,7 @@ class UserMiddleware {
     }
   } ;
 
-  public teste = async (req: Request, res: Response, next: NextFunction) => {
+  public userApprovalValidation = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { username, password } = req.body;
 
