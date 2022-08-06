@@ -1,7 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
 
-
-
 import OrderSchema from '../schemas/oder.schema';
 
 class OrderMiddleware {
