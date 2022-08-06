@@ -33,6 +33,15 @@ class ProductModel {
 
     return result as Product[];
   }
+
+  public async update(orderId: number, productsIds: number[]) {
+    const [{ affectedRows }] = await this.connection.query<ResultSetHeader>(
+      'UPDATE Trybesmith.Products SET orderId = ? WHERE id IN (?)',
+      [orderId, productsIds],
+    );
+
+    return affectedRows;
+  }
 }
 
 export default ProductModel;

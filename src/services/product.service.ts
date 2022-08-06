@@ -20,6 +20,12 @@ class ProductService {
 
     return products;
   }
+
+  public async update(orderId: number, productsIds: number[]) {
+    const productsUpdated = await this.model.update(orderId, productsIds);
+
+    return productsUpdated;
+  }
 }
 
 export default ProductService;

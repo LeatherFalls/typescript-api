@@ -4,11 +4,16 @@ import OrderModel from '../models/order.model';
 
 import ModelOrder from '../interfaces/orderModel.interface';
 
+import UserModel from '../models/user.model';
+
 class OrderService {
   public model: OrderModel;
 
+  public userModel: UserModel;
+
   constructor() {
     this.model = new OrderModel(connection);
+    this.userModel = new UserModel(connection);
   }
 
   public async getAll(): Promise<ModelOrder[]> {
@@ -24,9 +29,13 @@ class OrderService {
       };
     });
 
-    console.log(orders);
-
     return orders as object[] as ModelOrder[];
+  }
+
+  public async create(userId: number) {
+    const id = await this.model.create(userId);
+
+    return id;
   }
 }
 
